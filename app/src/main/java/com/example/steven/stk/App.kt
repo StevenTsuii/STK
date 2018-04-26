@@ -5,8 +5,10 @@ import android.util.Log
 import com.example.steven.stk.component.ActivityComponent
 import com.example.steven.stk.component.AppComponent
 import com.example.steven.stk.component.DaggerAppComponent
+import com.example.steven.stk.component.FragmentComponent
 import com.example.steven.stk.module.ActivityModule
 import com.example.steven.stk.module.AppModule
+import com.example.steven.stk.module.FragmentModule
 import javax.inject.Inject
 
 /**
@@ -20,8 +22,9 @@ class App : Application() {
 
     }
 
-    lateinit var mAppComponent: AppComponent
-    private lateinit var mActivityComponent: ActivityComponent
+    private lateinit var mAppComponent: AppComponent
+    private var mActivityComponent: ActivityComponent? = null
+    private var mFragmentComponent: FragmentComponent? = null
 
     @Inject
     lateinit var createdTimestamp: String
@@ -31,7 +34,6 @@ class App : Application() {
         instance = this
         mAppComponent = DaggerAppComponent.builder().appModule(AppModule(instance)).build()
         mAppComponent.inject(this)
-        mActivityComponent = mAppComponent.plusActivityComponent(ActivityModule())
         Log.d("StevenCheck", createdTimestamp)
     }
 
@@ -40,7 +42,18 @@ class App : Application() {
         if (mActivityComponent == null) {
             mActivityComponent = mAppComponent.plusActivityComponent(ActivityModule())
         }
-        return mActivityComponent
+        return mActivityComponent as ActivityComponent
+    }
+
+    fun plusFragmentComponent(): FragmentComponent {
+        if (mFragmentComponent == null) {
+            mFragmentComponent = plusActivityComponent().plusFragmentComponent(FragmentModule())
+        }
+        return mFragmentComponent as FragmentComponent
+    }
+
+    fun clearActivityComponent() {
+        mActivityComponent.let { mActivityComponent = null }
     }
 
 }

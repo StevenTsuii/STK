@@ -1,6 +1,5 @@
 package com.example.steven.stk.component
 
-import com.example.steven.stk.MainFragment
 import com.example.steven.stk.module.InfoModule
 import com.example.steven.stk.module.UserModule
 import dagger.Component
@@ -12,5 +11,5 @@ import dagger.Component
 @Component(modules = arrayOf(InfoModule::class, UserModule::class))
 interface InfoComponent {
     //fun inject(mainActivity: MainActivity)
-    fun inject(mainFragment: MainFragment)
+//    fun inject(mainFragment: MainFragment)
 }

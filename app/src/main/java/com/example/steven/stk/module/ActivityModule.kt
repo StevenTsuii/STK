@@ -15,4 +15,6 @@ class ActivityModule {
     @Provides
     @ActivityScope
     fun providesAppRepository(context: Context) = AppRepository(context)
+
+
 }

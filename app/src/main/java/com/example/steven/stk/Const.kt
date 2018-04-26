@@ -10,4 +10,5 @@ const val USER = "user"
 
 const val VERSION_NAME = "versionName"
 const val VERSION_CODE = "versionCode"
+const val FRAGMENT_MODULE_CREATED_TIME = "FRAGMENT_MODULE_CREATED_TIME"
 

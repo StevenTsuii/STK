@@ -1,6 +1,6 @@
 package com.example.steven.stk.component
 
-import com.example.steven.stk.MainFragment
+import com.example.steven.stk.fragment.MainFragment
 import com.example.steven.stk.annotation.FragmentScope
 import com.example.steven.stk.module.FragmentModule
 import dagger.Subcomponent

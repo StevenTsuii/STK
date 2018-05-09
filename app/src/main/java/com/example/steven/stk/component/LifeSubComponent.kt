@@ -1,6 +1,6 @@
 package com.example.steven.stk.component
 
-import com.example.steven.stk.LifeSpan
+import com.example.steven.stk.fragment.LifeSpan
 import com.example.steven.stk.annotation.CustomScope
 import dagger.Subcomponent
 

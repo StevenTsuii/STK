@@ -1,6 +1,6 @@
 package com.example.steven.stk.component
 
-import com.example.steven.stk.MainActivity
+import com.example.steven.stk.activity.MainActivity
 import com.example.steven.stk.annotation.ActivityScope
 import com.example.steven.stk.module.ActivityModule
 import com.example.steven.stk.module.FragmentModule

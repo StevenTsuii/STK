@@ -3,6 +3,9 @@ package com.example.steven.stk
 /**
  * Created by steven on 26/3/2018.
  */
+
+const val API_END_POINT = "http://mldev.api.appledaily.com.hk/v1/1/"
+
 const val GUEST_NAME = "guestName"
 const val USER_NAME = "userName"
 const val GUEST = "guest"

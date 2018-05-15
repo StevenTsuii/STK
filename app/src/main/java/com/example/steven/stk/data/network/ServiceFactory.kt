@@ -20,7 +20,6 @@ object ServiceFactory{
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //asynchronous network request
-                .addConverterFactory(GsonConverterFactory.create())//etw output wrapper
                 .baseUrl(API_END_POINT)
                 .client(getOkHttpClient())
                 .build()

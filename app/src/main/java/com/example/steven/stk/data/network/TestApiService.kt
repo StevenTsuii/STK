@@ -4,11 +4,8 @@ import com.example.steven.stk.data.model.ResponseModel
 import io.reactivex.Observable
 import retrofit2.http.GET
 
-interface STKService {
+interface TestApiService {
 
-    @GET("startup")
-    fun startUp(): Observable<ResponseModel>
-
-    @GET("SideMenu")
-    fun sideMenu(): Observable<ResponseModel>
+    @GET("app/version.aspx")
+    fun version(): Observable<ResponseModel>
 }

@@ -3,6 +3,7 @@ package com.example.steven.stk.module
 import android.content.Context
 import com.example.steven.stk.API_END_POINT
 import com.example.steven.stk.data.network.STKService
+import com.example.steven.stk.data.network.TestApiService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -14,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -22,8 +24,14 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesSTKService(retrofit: Retrofit): STKService {
+    fun providesSTKService(@Named("STK")retrofit: Retrofit): STKService {
         return retrofit.create(STKService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesTestApiService(@Named("Test")retrofit: Retrofit): TestApiService {
+        return retrofit.create(TestApiService::class.java)
     }
 
     @Provides
@@ -62,13 +70,26 @@ class NetworkModule {
     }
 
     @Provides
+    @Named("STK")
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //asynchronous network request
-                .addConverterFactory(GsonConverterFactory.create(gson))//etw output wrapper
+                .addConverterFactory(GsonConverterFactory.create())//etw output wrapper
                 .client(okHttpClient)
                 .baseUrl(API_END_POINT)
+                .build()
+    }
+
+    @Provides
+    @Named("Test")
+    @Singleton
+    fun providesRetrofit2(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
+        return Retrofit.Builder()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //asynchronous network request
+                .addConverterFactory(GsonConverterFactory.create())//etw output wrapper
+                .client(okHttpClient)
+                .baseUrl("https://hk.strawberrynet.com")
                 .build()
     }
 }

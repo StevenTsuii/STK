@@ -27,6 +27,7 @@ android {
 
 ext.retrofitVersion = '2.4.0'
 ext.okhttp3Version = '3.10.0'
+ext.dagger2Version = '2.15'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -35,17 +36,26 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:support-vector-drawable:26.1.0'
-    implementation 'com.google.dagger:dagger:2.15'
-    kapt 'com.google.dagger:dagger-compiler:2.15'
-    kaptTest 'com.google.dagger:dagger-compiler:2.15'
     implementation 'com.google.android.gms:play-services-ads:15.0.0'
+
+    //Dagger2
+    implementation "com.google.dagger:dagger:$dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2Version"
+    kaptTest "com.google.dagger:dagger-compiler:$dagger2Version"
+
+    //RxJava2
     implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+    //Retrofit2
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //okHttp3
     implementation "com.squareup.okhttp3:okhttp:$okhttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

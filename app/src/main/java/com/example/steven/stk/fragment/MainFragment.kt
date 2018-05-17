@@ -12,17 +12,12 @@ import com.example.steven.stk.*
 import com.example.steven.stk.data.ForeverLife
 import com.example.steven.stk.data.LongLife
 import com.example.steven.stk.data.ShortLife
-import com.example.steven.stk.data.model.Model
 import com.example.steven.stk.data.network.STKService
 import com.example.steven.stk.data.network.TestApiService
 import com.example.steven.stk.repo.AppRepository
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 import javax.inject.Named
@@ -117,6 +112,16 @@ class MainFragment : Fragment() {
                 .subscribe(Consumer {
                     Log.d("", "Startup Result: ${it}")
                     resultTextView.text = "Startup Result: ${it}"
+                })
+
+
+        stkService.sideMenu()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(Consumer {
+                    Log.d("", "sideMenu Result: ${it}")
+                    Log.d("", "sideMenu Result: ${it.content[0].api}")
+                    resultTextView.text = "${resultTextView.text}\n\nsideMenu Result api: ${it.content[0].api} \n\n ${it}"
                 })
 
 

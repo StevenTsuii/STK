@@ -7,8 +7,6 @@ package com.example.steven.stk.data.model
 object SideMenuModel {
     data class BaseResponse(val resTime: Int, val state: String, val content: ArrayList<SideMenuItem>)
 
-
-
     data class SideMenuItem(
             val menuId: String,
             val displayName: String,

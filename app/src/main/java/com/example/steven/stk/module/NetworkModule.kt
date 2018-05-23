@@ -2,10 +2,9 @@ package com.example.steven.stk.module
 
 import android.content.Context
 import com.example.steven.stk.API_END_POINT
+import com.example.steven.stk.API_V2_END_POINT
 import com.example.steven.stk.data.network.STKService
-import com.example.steven.stk.data.network.TestApiService
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.example.steven.stk.data.network.STKService2
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -24,22 +23,16 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providesSTKService(@Named("STK")retrofit: Retrofit): STKService {
+    fun providesSTKService(@Named("STK") retrofit: Retrofit): STKService {
         return retrofit.create(STKService::class.java)
     }
 
     @Provides
     @Singleton
-    fun providesTestApiService(@Named("Test")retrofit: Retrofit): TestApiService {
-        return retrofit.create(TestApiService::class.java)
+    fun providesSTKService2(@Named("STK_V2") retrofit: Retrofit): STKService2 {
+        return retrofit.create(STKService2::class.java)
     }
 
-    @Provides
-    @Singleton
-    fun providesGson(): Gson {
-        val gsonBuilder = GsonBuilder()
-        return gsonBuilder.create()
-    }
 
     @Provides
     @Singleton
@@ -70,26 +63,38 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
+    fun providesRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory {
+        return RxJava2CallAdapterFactory.create()
+    }
+
+    @Provides
+    @Singleton
+    fun providesGsonConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
+    }
+
+    @Provides
     @Named("STK")
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
+    fun providesRetrofit(okHttpClient: OkHttpClient, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory, gsonConverterFactory: GsonConverterFactory): Retrofit {
         return Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //asynchronous network request
-                .addConverterFactory(GsonConverterFactory.create())//etw output wrapper
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
+                .addConverterFactory(gsonConverterFactory)
                 .client(okHttpClient)
                 .baseUrl(API_END_POINT)
                 .build()
     }
 
     @Provides
-    @Named("Test")
+    @Named("STK_V2")
     @Singleton
-    fun providesRetrofit2(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
+    fun providesRetrofit2(okHttpClient: OkHttpClient, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory, gsonConverterFactory: GsonConverterFactory): Retrofit {
         return Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //asynchronous network request
-                .addConverterFactory(GsonConverterFactory.create())//etw output wrapper
+                .addCallAdapterFactory(rxJava2CallAdapterFactory)
+                .addConverterFactory(gsonConverterFactory)
                 .client(okHttpClient)
-                .baseUrl("https://hk.strawberrynet.com")
+                .baseUrl(API_V2_END_POINT)
                 .build()
     }
 }

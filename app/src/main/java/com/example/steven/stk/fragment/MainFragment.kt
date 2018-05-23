@@ -3,7 +3,6 @@ package com.example.steven.stk.fragment
 import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,8 @@ import com.example.steven.stk.data.ForeverLife
 import com.example.steven.stk.data.LongLife
 import com.example.steven.stk.data.ShortLife
 import com.example.steven.stk.data.network.STKService
-import com.example.steven.stk.data.network.TestApiService
+import com.example.steven.stk.data.network.STKService2
+import com.example.steven.stk.extension.log
 import com.example.steven.stk.repo.AppRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
     lateinit var stkService: STKService
 
     @Inject
-    lateinit var testApiService: TestApiService
+    lateinit var stkService2: STKService2
 
     @Inject
     lateinit var appRepository: AppRepository
@@ -110,8 +110,8 @@ class MainFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(Consumer {
-                    Log.d("", "Startup Result: ${it}")
-                    resultTextView.text = "Startup Result: ${it}"
+                    log("Startup Result: ${it}")
+                    resultTextView.text = "Startup Result: ${it.state}"
                 })
 
 
@@ -119,11 +119,16 @@ class MainFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(Consumer {
-                    Log.d("", "sideMenu Result: ${it}")
-                    Log.d("", "sideMenu Result: ${it.content[0].api}")
-                    resultTextView.text = "${resultTextView.text}\n\nsideMenu Result api: ${it.content[0].api} \n\n ${it}"
+                    resultTextView.text = "${resultTextView.text}\n\nsideMenu Result:${it.state}"
+                    log("SideMenu Result: ${it}")
                 })
 
+        stkService2.newsCatList().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(Consumer {
+                    resultTextView.text = "${resultTextView.text}\n\nNewsCatList Result:${it.state}"
+                    log("NewsCatList Result: ${it.state}")
+                })
 
     }
 }

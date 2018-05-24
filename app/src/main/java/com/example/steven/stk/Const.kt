@@ -5,7 +5,7 @@ package com.example.steven.stk
  */
 
 const val API_END_POINT = "http://mldev.api.appledaily.com.hk/v1/1/"
-const val API_V2_END_POINT = "https://mldev-api.appledaily.com.hk/ANDROID/v2/1/"
+const val API_END_POINT2 = "https://mldev-api.appledaily.com.hk"
 
 const val GUEST_NAME = "guestName"
 const val USER_NAME = "userName"

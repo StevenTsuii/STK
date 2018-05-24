@@ -1,4 +1,4 @@
-package com.example.steven.stk
+package com.example.steven.stk.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.steven.stk.MainData
+import com.example.steven.stk.R
 import kotlinx.android.synthetic.main.item_contact.view.*
 
 /**

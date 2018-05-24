@@ -1,19 +1,25 @@
 package com.example.steven.stk.fragment
 
-import android.app.Fragment
+
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.steven.stk.*
+import com.example.steven.stk.FRAGMENT_MODULE_CREATED_TIME
+import com.example.steven.stk.MainData
+import com.example.steven.stk.R
+import com.example.steven.stk.adapter.MainAdapter
+import com.example.steven.stk.adapter.MainPagerAdapter
+import com.example.steven.stk.base.activity.BaseFragment
 import com.example.steven.stk.data.ForeverLife
 import com.example.steven.stk.data.LongLife
 import com.example.steven.stk.data.ShortLife
 import com.example.steven.stk.data.network.STKService
 import com.example.steven.stk.data.network.STKService2
 import com.example.steven.stk.extension.log
+import com.example.steven.stk.extension.plugFragmentComponent
+import com.example.steven.stk.extension.toast
 import com.example.steven.stk.repo.AppRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
@@ -25,7 +31,7 @@ import javax.inject.Named
 /**
  * Created by steven on 20/3/2018.
  */
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment() {
 
     @Inject
     lateinit var stkService: STKService
@@ -52,7 +58,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        App.instance.plusFragmentComponent().inject(this)
+        plugFragmentComponent().inject(this)
         val item0 = MainData(fragmentModuleCreatedTime, appRepository.getVersionCode(), "NA");
         val item1 = MainData("steven", 20, "HK");
         val item2 = MainData(name = "G_G", age = 10, address = "NY");
@@ -64,45 +70,11 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = mainAdapter
 
-        Toast.makeText(activity.baseContext, "Yeah11111123!!!", Toast.LENGTH_LONG).show()
+        toast("MainFragment")
         refreshButton.setText("Refresh")
-//
-//        var lifeComponent = DaggerLifeComponent.create()
-//
-//        refreshButton.setOnClickListener {
-//
-//            var lifeSubComponent = lifeComponent.getLifeSubComponent()
-//            var lifeSpan = LifeSpan()
-//            lifeSubComponent.inject(lifeSpan)
-//            Log.d("StevenCheck", "ShortLife ${lifeSpan.shortLife.createdTimestamp}");
-//            Log.d("StevenCheck", "LongLife ${lifeSpan.longLife.createdTimestamp}");
-//            Log.d("StevenCheck", "ForeverLife ${lifeSpan.foreverLife.createdTimestamp}");
-//            Log.d("StevenCheck", "=================================");
-//
-//        }
 
-//        Observable.fromCallable {
-//
-//            var result = stkService.startUp()
-//            Log.d("", "result: ${result.content.lastUpdateDate.sideMenu}")
-//        }
+        viewPager.adapter = MainPagerAdapter(fragmentManager)
 
-//        stkService.sideMenu()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(Consumer { Log.d("", "SideMenu Result: ${it.content}") })
-
-//
-//        testApiService.version()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(Consumer { Log.d("", "Version Result: ${it.content}") })
-
-//        stkService.startUp()
-//                .map { it.content }
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({Log.d("", "Startup Result it.content: ${it}")});
 
 
 

@@ -1,7 +1,7 @@
 package com.example.steven.stk.data.network
 
 import com.example.steven.stk.API_END_POINT
-import com.example.steven.stk.API_V2_END_POINT
+import com.example.steven.stk.API_END_POINT2
 import com.example.steven.stk.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,7 +32,7 @@ object ServiceFactory{
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //asynchronous network request
-                .baseUrl(API_V2_END_POINT)
+                .baseUrl(API_END_POINT2)
                 .client(getOkHttpClient())
                 .build()
                 .create(STKService2::class.java)

@@ -2,7 +2,7 @@ package com.example.steven.stk.module
 
 import android.content.Context
 import com.example.steven.stk.API_END_POINT
-import com.example.steven.stk.API_V2_END_POINT
+import com.example.steven.stk.API_END_POINT2
 import com.example.steven.stk.data.network.STKService
 import com.example.steven.stk.data.network.STKService2
 import dagger.Module
@@ -94,7 +94,7 @@ class NetworkModule {
                 .addCallAdapterFactory(rxJava2CallAdapterFactory)
                 .addConverterFactory(gsonConverterFactory)
                 .client(okHttpClient)
-                .baseUrl(API_V2_END_POINT)
+                .baseUrl(API_END_POINT2)
                 .build()
     }
 }

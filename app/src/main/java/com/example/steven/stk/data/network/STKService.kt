@@ -13,6 +13,4 @@ interface STKService {
     @GET("SideMenu")
     fun sideMenu(): Observable<SideMenuModel.BaseResponse>
 
-    @GET("ANDROID/v2/1/newsCatlist")
-    fun newsCatList(): Observable<SideMenuModel.BaseResponse>
 }

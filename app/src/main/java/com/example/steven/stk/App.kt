@@ -9,6 +9,7 @@ import com.example.steven.stk.component.FragmentComponent
 import com.example.steven.stk.module.ActivityModule
 import com.example.steven.stk.module.AppModule
 import com.example.steven.stk.module.FragmentModule
+import com.google.android.gms.ads.MobileAds
 import javax.inject.Inject
 
 /**
@@ -32,6 +33,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        MobileAds.initialize(this, ADMOB_APP_ID)
         mAppComponent = DaggerAppComponent.builder().appModule(AppModule(instance)).build()
         mAppComponent.inject(this)
         Log.d("StevenCheck", createdTimestamp)

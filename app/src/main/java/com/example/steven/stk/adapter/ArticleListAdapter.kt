@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
+import com.example.steven.stk.GlideApp
 import com.example.steven.stk.R
 import com.example.steven.stk.data.model.ArticleListModel
 import kotlinx.android.synthetic.main.item_article_list_cell.view.*
@@ -39,8 +39,9 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
 
             for (meida in articleItem.mediaGroup) {
                 if ("image" == meida.type) {
-                    Glide.with(itemView.context)
+                    GlideApp.with(itemView.context)
                             .load(meida.largePath)
+                            .centerCrop()
                             .into(itemView.image)
 
 

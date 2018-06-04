@@ -2,14 +2,11 @@ package com.example.steven.stk.fragment
 
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.steven.stk.FRAGMENT_MODULE_CREATED_TIME
-import com.example.steven.stk.MainData
 import com.example.steven.stk.R
-import com.example.steven.stk.adapter.MainAdapter
 import com.example.steven.stk.adapter.MainPagerAdapter
 import com.example.steven.stk.base.activity.BaseFragment
 import com.example.steven.stk.data.ForeverLife
@@ -19,8 +16,11 @@ import com.example.steven.stk.data.network.STKService
 import com.example.steven.stk.data.network.STKService2
 import com.example.steven.stk.extension.log
 import com.example.steven.stk.extension.plugFragmentComponent
-import com.example.steven.stk.extension.toast
 import com.example.steven.stk.repo.AppRepository
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.reward.RewardedVideoAd
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -31,7 +31,8 @@ import javax.inject.Named
 /**
  * Created by steven on 20/3/2018.
  */
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(){
+
 
     @Inject
     lateinit var stkService: STKService
@@ -41,6 +42,12 @@ class MainFragment : BaseFragment() {
 
     @Inject
     lateinit var appRepository: AppRepository
+
+    @Inject
+    lateinit var interstitialAd: InterstitialAd
+
+    @Inject
+    lateinit var rewardedVideoAd: RewardedVideoAd
 
     @Inject
     @Named(FRAGMENT_MODULE_CREATED_TIME)
@@ -59,24 +66,59 @@ class MainFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         plugFragmentComponent().inject(this)
-        val item0 = MainData(fragmentModuleCreatedTime, appRepository.getVersionCode(), "NA");
-        val item1 = MainData("steven", 20, "HK");
-        val item2 = MainData(name = "G_G", age = 10, address = "NY");
-        val item3 = item1.copy(name = "StevenTsui", age = 25);
-        var itemList = arrayListOf(item0, item1, item2, item3)
-
-        var mainAdapter = MainAdapter(activity.baseContext, itemList)
-
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = mainAdapter
-
-        toast("MainFragment")
         refreshButton.setText("Refresh")
+        refreshButton.setOnClickListener(View.OnClickListener {
+//            if (rewardedVideoAd.isLoaded) {
+//            rewardedVideoAd.show()
+//        }
+        })
+
+        //initInterstitialAd()
+
+        initBannerAd()
+
+
+
+//        rewardedVideoAd.rewardedVideoAdListener = object : RewardedVideoAdListener {
+//            override fun onRewardedVideoAdClosed() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewardedVideoAdLeftApplication() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewardedVideoAdLoaded() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewardedVideoAdOpened() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewardedVideoCompleted() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewarded(p0: RewardItem?) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewardedVideoStarted() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//            override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//        }
+//
+//        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+//                AdRequest.Builder().addTestDevice(ADMOB_TEST_DEVICE_ID).build())
+
 
         viewPager.adapter = MainPagerAdapter(fragmentManager)
-
-
-
 
         stkService.startUp()
                 .subscribeOn(Schedulers.io())
@@ -102,6 +144,78 @@ class MainFragment : BaseFragment() {
                     log("NewsCatList Result: ${it.state}")
                 })
 
+
+
+
+    }
+
+    private fun initBannerAd() {
+        adView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                log("onAdLoaded  adView.isShown:${adView.isShown}")
+
+            }
+
+            override fun onAdFailedToLoad(errorCode: Int) {
+                // Code to be executed when an ad request fails.
+                log("onAdFailedToLoad")
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                log("onAdOpened")
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                log("onAdLeftApplication")
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+                log("onAdClosed")
+            }
+        }
+
+
+        val adRequest = AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build()
+        adView.loadAd(adRequest)
+    }
+
+    private fun initInterstitialAd() {
+        interstitialAd.loadAd(AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build())
+        interstitialAd.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                log("interstitialAd onAdLoaded")
+                interstitialAd.show()
+            }
+
+            override fun onAdFailedToLoad(errorCode: Int) {
+                // Code to be executed when an ad request fails.
+                log("interstitialAd onAdFailedToLoad")
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when the ad is displayed.
+                log("interstitialAd onAdOpened")
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                log("interstitialAd onAdLeftApplication")
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when when the interstitial ad is closed.
+                log("interstitialAd onAdClosed")
+            }
+        }
     }
 }
 

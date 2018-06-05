@@ -30,7 +30,7 @@
         ads:layout_constraintLeft_toLeftOf="parent"
         ads:layout_constraintRight_toRightOf="parent"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-4344418392776540/3267549608"></com.google.android.gms.ads.AdView>
 
     <TextView
         android:id="@+id/resultTextView"

@@ -18,14 +18,14 @@ class AdModule {
     @ActivityScope
     fun providesInterstitialAd(context: Context): InterstitialAd {
         var intersititalAd = InterstitialAd(context)
-        //intersititalAd.adUnitId = "ca-app-pub-4344418392776540/1863517339"
-        intersititalAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //google provide test id
+        intersititalAd.adUnitId = "ca-app-pub-4344418392776540/1863517339"
+//        intersititalAd.adUnitId = "ca-app-pub-3940256099942544/1033173712" //google provide test id
         return intersititalAd
     }
 
     @Provides
     @ActivityScope
-    fun providesRewardedVideoAd(context: Context): RewardedVideoAd{
+    fun providesRewardedVideoAd(context: Context): RewardedVideoAd {
         return MobileAds.getRewardedVideoAdInstance(context)
     }
 }

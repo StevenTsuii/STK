@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import com.example.steven.stk.R
 import com.example.steven.stk.base.activity.BaseActivity
+import com.example.steven.stk.extension.disableShiftMode
 import com.example.steven.stk.extension.plugActivityComponent
 import com.example.steven.stk.extension.toast
 import com.example.steven.stk.fragment.MainFragment
@@ -40,6 +41,14 @@ class MainActivity : BaseActivity() {
                 message.setText(R.string.title_notifications)
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_steven -> {
+                message.setText("???")
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_settings -> {
+                message.setText(R.string.title_notifications)
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }
@@ -48,6 +57,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.disableShiftMode()
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, MainFragment()).commit()
 
 

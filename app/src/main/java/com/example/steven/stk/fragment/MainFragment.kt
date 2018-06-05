@@ -16,6 +16,7 @@ import com.example.steven.stk.data.network.STKService
 import com.example.steven.stk.data.network.STKService2
 import com.example.steven.stk.extension.log
 import com.example.steven.stk.extension.plugFragmentComponent
+import com.example.steven.stk.extension.toast
 import com.example.steven.stk.repo.AppRepository
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -133,7 +134,8 @@ class MainFragment : BaseFragment() {
             override fun onRewardedVideoCompleted() {
             }
 
-            override fun onRewarded(p0: RewardItem?) {
+            override fun onRewarded(rewardItem: RewardItem?) {
+                toast("Rewarded got amount: ${rewardItem?.amount} type: ${rewardItem?.type}")
             }
 
             override fun onRewardedVideoStarted() {
@@ -144,7 +146,8 @@ class MainFragment : BaseFragment() {
 
         }
 
-        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+        rewardedVideoAd.loadAd("\n" +
+                "ca-app-pub-4344418392776540/3923059681", //test "ca-app-pub-3940256099942544/5224354917",
                 AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build())
     }
 

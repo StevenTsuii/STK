@@ -7,6 +7,9 @@ import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.example.steven.stk.App
@@ -54,4 +57,30 @@ fun BottomNavigationView.disableShiftMode() {
     } catch (e: NoSuchFieldException) {
         e.printStackTrace()
     }
+}
+
+/*inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+    val fragmentTransaction = beginTransaction()
+    fragmentTransaction.func()
+    fragmentTransaction.commit()
+}*/
+
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
+    beginTransaction().func().commit()
+}
+
+fun AppCompatActivity.addFragment(fragment : Fragment, containerId : Int){
+    supportFragmentManager.inTransaction { add(containerId, fragment) }
+}
+
+fun AppCompatActivity.replaceFragment(fragment : Fragment, containerId : Int){
+    supportFragmentManager.inTransaction { replace(containerId, fragment) }
+}
+
+fun Fragment.addFragment(fragment : Fragment, containerId : Int){
+    activity.supportFragmentManager.inTransaction { add(containerId, fragment) }
+}
+
+fun Fragment.replaceFragment(fragment : Fragment, containerId : Int){
+    activity.supportFragmentManager.inTransaction { replace(containerId, fragment) }
 }

@@ -6,8 +6,10 @@ import com.example.steven.stk.R
 import com.example.steven.stk.base.activity.BaseActivity
 import com.example.steven.stk.extension.disableShiftMode
 import com.example.steven.stk.extension.plugActivityComponent
+import com.example.steven.stk.extension.replaceFragment
 import com.example.steven.stk.extension.toast
-import com.example.steven.stk.fragment.MainFragment
+import com.example.steven.stk.fragment.ArticleListContainerFragment
+import com.example.steven.stk.fragment.SecondFragment
 import com.example.steven.stk.repo.AppRepository
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,22 +33,27 @@ class MainActivity : BaseActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 message.setText(R.string.title_home)
+                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
                 message.setText(R.string.title_dashboard)
+                replaceFragment(SecondFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
                 message.setText(R.string.title_notifications)
+                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_steven -> {
                 message.setText("???")
+                replaceFragment(SecondFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
                 message.setText(R.string.title_notifications)
+                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -56,13 +63,12 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        plugActivityComponent().inject(this)
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         navigation.disableShiftMode()
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, MainFragment()).commit()
 
-
-        // SubComponent
-        plugActivityComponent().inject(this)
         toast("appPackageName: ${appRepository.getPackageName()} " +
                 "getVersionCode:${appRepository.getVersionCode()}")
 
@@ -71,6 +77,7 @@ class MainActivity : BaseActivity() {
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(Consumer { }))
 
 
+        replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
 
     }
 

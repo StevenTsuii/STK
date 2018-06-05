@@ -24,6 +24,8 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
 
+
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -57,6 +59,9 @@ class MainActivity : BaseActivity() {
         compositeDisposable.add(Observable.fromArray(arrayOf(""))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(Consumer { }))
+
+
+
     }
 
 }

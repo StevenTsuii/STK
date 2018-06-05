@@ -20,7 +20,9 @@ import com.example.steven.stk.repo.AppRepository
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.reward.RewardItem
 import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -31,7 +33,7 @@ import javax.inject.Named
 /**
  * Created by steven on 20/3/2018.
  */
-class MainFragment : BaseFragment(){
+class MainFragment : BaseFragment() {
 
 
     @Inject
@@ -67,55 +69,19 @@ class MainFragment : BaseFragment(){
 
         plugFragmentComponent().inject(this)
         refreshButton.setText("Refresh")
-        refreshButton.setOnClickListener(View.OnClickListener {
-//            if (rewardedVideoAd.isLoaded) {
-//            rewardedVideoAd.show()
-//        }
-        })
+        refreshButton.setOnClickListener {
+            if (rewardedVideoAd.isLoaded) {
+                rewardedVideoAd.show()
+            }else{
+                loadRewardedVideoAd()
+            }
+        }
 
-        //initInterstitialAd()
+        initInterstitialAd()
 
         initBannerAd()
 
-
-
-//        rewardedVideoAd.rewardedVideoAdListener = object : RewardedVideoAdListener {
-//            override fun onRewardedVideoAdClosed() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewardedVideoAdLeftApplication() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewardedVideoAdLoaded() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewardedVideoAdOpened() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewardedVideoCompleted() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewarded(p0: RewardItem?) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewardedVideoStarted() {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//            override fun onRewardedVideoAdFailedToLoad(p0: Int) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//        }
-//
-//        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
-//                AdRequest.Builder().addTestDevice(ADMOB_TEST_DEVICE_ID).build())
+        loadRewardedVideoAd()
 
 
         viewPager.adapter = MainPagerAdapter(fragmentManager)
@@ -145,8 +111,41 @@ class MainFragment : BaseFragment(){
                 })
 
 
+    }
 
+    private fun loadRewardedVideoAd() {
+        rewardedVideoAd.rewardedVideoAdListener = object : RewardedVideoAdListener {
+            override fun onRewardedVideoAdClosed() {
+            }
 
+            override fun onRewardedVideoAdLeftApplication() {
+            }
+
+            override fun onRewardedVideoAdLoaded() {
+                if (rewardedVideoAd.isLoaded) {
+                    rewardedVideoAd.show()
+                }
+            }
+
+            override fun onRewardedVideoAdOpened() {
+            }
+
+            override fun onRewardedVideoCompleted() {
+            }
+
+            override fun onRewarded(p0: RewardItem?) {
+            }
+
+            override fun onRewardedVideoStarted() {
+            }
+
+            override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+            }
+
+        }
+
+        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+                AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build())
     }
 
     private fun initBannerAd() {

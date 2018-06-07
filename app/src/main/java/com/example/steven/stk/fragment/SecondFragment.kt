@@ -9,12 +9,14 @@ import com.example.steven.stk.R
 import com.example.steven.stk.base.activity.BaseFragment
 import com.example.steven.stk.extension.plugFragmentComponent
 import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import kotlinx.android.synthetic.main.fragment_second.*
 
 /**
@@ -31,29 +33,41 @@ class SecondFragment : BaseFragment() {
 
         plugFragmentComponent().inject(this)
 
-        val bandwidthMeter1 = DefaultBandwidthMeter()
-        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter1)
-        val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
 
-        val (player, videoSource) = createPlayer(trackSelector)
 
-        testPlayerView.player = player
-        testPlayerView2.player = player
-        player.prepare(videoSource)
+
+        playMediaSource(testPlayerView, "http://video.appledaily.com.hk/mcp/encode/2018/06/07/3626607/20180607_chi_612_w.mp4")
+        playMediaSource(testPlayerView2, "http://video.appledaily.com.hk/mcp/encode/2018/06/06/3626383/20180608_Sub573new_clean_w.mp4")
+        playMediaSource(testPlayerView3, "http://video.appledaily.com.hk/mcp/encode/2018/06/07/3626915/180530GeorgeMing_PhoMetro_ADL_mp4_w.mp4")
 
 
     }
 
-    private fun createPlayer(trackSelector: DefaultTrackSelector): Pair<SimpleExoPlayer, ExtractorMediaSource> {
-        // 2. Create the player
-        val player = ExoPlayerFactory.newSimpleInstance(activity, trackSelector)
+
+    private fun playMediaSource(playerView: PlayerView, videoUrl: String) {
         val bandwidthMeter = DefaultBandwidthMeter()
+        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter)
+        val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
+        val player = ExoPlayerFactory.newSimpleInstance(activity, trackSelector)
+
+        playerView.player = player
+
+        player.prepare(createMediaSource(bandwidthMeter, videoUrl))
+
+    }
+
+    private fun createMediaSource(bandwidthMeter: DefaultBandwidthMeter, videoUrl: String): ExtractorMediaSource? {
+        val defaultHttpDataSourceFactory = DefaultHttpDataSourceFactory("Android", bandwidthMeter,
+                DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
+                DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
+                true)
+
         // Produces DataSource instances through which media data is loaded.
-        val dataSourceFactory = DefaultDataSourceFactory(activity,
-                "fgsdfgsdfgsdfg", bandwidthMeter)
+        val dataSourceFactory = DefaultDataSourceFactory(activity, bandwidthMeter,
+                defaultHttpDataSourceFactory)
         // This is the MediaSource representing the media to be played.
-        val videoSource = ExtractorMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(Uri.parse("https://video.appledaily.com.hk/mcp/encode/2017/12/04/3497170/20171203_ccm_03v40AD_w.mp4"))
-        return Pair(player, videoSource)
+        return ExtractorMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(Uri.parse(videoUrl))
+
     }
 }

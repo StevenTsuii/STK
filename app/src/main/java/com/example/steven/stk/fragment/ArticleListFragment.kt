@@ -69,6 +69,16 @@ class ArticleListFragment : BaseFragment() {
                 val middle = Math.abs(lastPos - firstPos) / 2 + firstPos
 
                 log("onScrolled firstPos: ${firstPos} middle: ${middle} lastPos:${lastPos}")
+
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val firstPos = layoutManager.findFirstVisibleItemPosition()
+                val lastPos = layoutManager.findLastVisibleItemPosition()
+                val middle = Math.abs(lastPos - firstPos) / 2 + firstPos
+                log("onScrollStateChanged firstPos: ${firstPos} middle: ${middle} lastPos:${lastPos}")
+
                 val currentArticleItem = articleListAdapter.articleItemList[middle]
 
                 var mediaUrl : String? = null
@@ -95,14 +105,6 @@ class ArticleListFragment : BaseFragment() {
                     itemView.playerView.visibility = View.VISIBLE
                     itemView.playerView.hideController()
                 }
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val firstPos = layoutManager.findFirstVisibleItemPosition()
-                val lastPos = layoutManager.findLastVisibleItemPosition()
-                val middle = Math.abs(lastPos - firstPos) / 2 + firstPos
-                log("onScrollStateChanged firstPos: ${firstPos} middle: ${middle} lastPos:${lastPos}")
 
             }
         })

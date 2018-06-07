@@ -38,6 +38,10 @@ object ArticleListModel {
             val smallPath: String,
             val largePath: String,
             val width: String,
-            val height: String
+            val title: String,
+            val videoId: String,
+            val url: String,
+            val quality: String
+
     )
 }

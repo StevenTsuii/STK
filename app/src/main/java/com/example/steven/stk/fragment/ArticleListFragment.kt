@@ -11,6 +11,7 @@ import com.example.steven.stk.base.activity.BaseFragment
 import com.example.steven.stk.data.network.STKService2
 import com.example.steven.stk.extension.log
 import com.example.steven.stk.extension.plugFragmentComponent
+import com.google.android.exoplayer2.SimpleExoPlayer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -24,6 +25,9 @@ class ArticleListFragment : BaseFragment() {
 
     @Inject
     lateinit var stkService2: STKService2
+
+    @Inject
+    lateinit var simpleExoPlayer: SimpleExoPlayer
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_article_list, container, false)
@@ -40,7 +44,7 @@ class ArticleListFragment : BaseFragment() {
                 .subscribe(Consumer {
                     log("ArticleList Result size: ${it.content.size}")
 
-                    recyclerView.adapter = ArticleListAdapter(it.content)
+                    recyclerView.adapter = ArticleListAdapter(it.content, simpleExoPlayer)
                 })
 
     }

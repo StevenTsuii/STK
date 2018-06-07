@@ -27,13 +27,15 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
 
+    val articleListContainerFragment = ArticleListContainerFragment()
+
 
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
                 message.setText(R.string.title_home)
-                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
+                replaceFragment(articleListContainerFragment, R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {

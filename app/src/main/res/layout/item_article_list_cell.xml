@@ -18,10 +18,23 @@
         android:id="@+id/playerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/image"
         app:layout_constraintLeft_toLeftOf="@id/image"
         app:layout_constraintRight_toRightOf="@id/image"
         app:layout_constraintTop_toTopOf="@id/image"></com.google.android.exoplayer2.ui.PlayerView>
+
+
+    <ImageView
+        android:id="@+id/play_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/exo_controls_play"
+        app:layout_constraintBottom_toBottomOf="@id/image"
+        app:layout_constraintRight_toRightOf="@id/image"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/title"
@@ -52,5 +65,6 @@
         app:layout_constraintBottom_toBottomOf="@id/label"
         app:layout_constraintStart_toEndOf="@id/label"
         app:layout_constraintTop_toTopOf="@id/label" />
+
 
 </android.support.constraint.ConstraintLayout>

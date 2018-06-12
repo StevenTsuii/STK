@@ -28,6 +28,8 @@ import kotlinx.android.synthetic.main.item_article_list_cell.view.*
 class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem>) : RecyclerView.Adapter<ArticleListAdapter.ArticleListCellItemViewHolder>() {
 
     var articleItemList = articleItemList
+    var currentMiddlePosition: Int = 0
+    var playerHashMap = HashMap<Int, SimpleExoPlayer>()
 
     fun addArticleItemList(list: ArrayList<ArticleListModel.ArticleItem>) {
 
@@ -39,7 +41,6 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ArticleListCellItemViewHolder {
         Log.d("StevenCheck", "onCreateViewHolder")
         return ArticleListCellItemViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_article_list_cell, parent, false))
@@ -47,7 +48,7 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
 
     override fun onBindViewHolder(holder: ArticleListCellItemViewHolder?, position: Int) {
         Log.d("StevenCheck", "onBindViewHolder position:${position}")
-        holder?.bind(articleItem = articleItemList.get(position))
+        holder?.bind(articleItem = articleItemList.get(position), playerHashMap = playerHashMap)
     }
 
     override fun getItemCount(): Int {
@@ -59,25 +60,41 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
         super.onViewAttachedToWindow(holder)
         Log.d("StevenCheck", "onViewAttachedToWindow position:${holder.adapterPosition}")
 
-        holder.mMediaUrl.let {
-            holder.simpleExoPlayer?.prepare(holder.createMediaSource(it!!, holder.itemView.context))
-            holder.simpleExoPlayer?.playWhenReady = true
+        if (holder.adapterPosition == 0 || holder.adapterPosition == (itemCount - 1)) {
+            currentMiddlePosition = holder.adapterPosition
+        } else if (currentMiddlePosition < holder.adapterPosition) {
+            currentMiddlePosition = (holder.adapterPosition - 1)
+        } else {
+            currentMiddlePosition = (holder.adapterPosition + 1)
         }
 
+        Log.d("StevenCheck", "currentMiddlePosition :${currentMiddlePosition}")
 
+//        holder.simpleExoPlayer.let {
+//            playerHashMap?.put(holder?.adapterPosition, holder.simpleExoPlayer!!)
+//        }
+//
+        if (playerHashMap.containsKey(currentMiddlePosition)) {
+            playerHashMap.forEach { it.value.playWhenReady = false }
+            playerHashMap.get(currentMiddlePosition)?.playWhenReady = true
+        }
+        Log.d("StevenCheck", "playerHashMap.size :${playerHashMap.size}")
     }
 
     override fun onViewDetachedFromWindow(holder: ArticleListCellItemViewHolder) {
         super.onViewDetachedFromWindow(holder)
         Log.d("StevenCheck", "onViewDetachedFromWindow position:${holder.adapterPosition}")
-        holder.simpleExoPlayer?.stop()
+        holder.simpleExoPlayer?.playWhenReady = false
+        Log.d("StevenCheck", "playerHashMap.size :${playerHashMap.size}")
     }
 
     override fun onViewRecycled(holder: ArticleListCellItemViewHolder) {
         super.onViewRecycled(holder)
         Log.d("StevenCheck", "onViewRecycled position:${holder.adapterPosition}")
+        playerHashMap.remove(holder.adapterPosition)
         holder.simpleExoPlayer?.release()
         holder.simpleExoPlayer = null
+        Log.d("StevenCheck", "playerHashMap.size :${playerHashMap.size}")
     }
 
     class ArticleListCellItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -85,10 +102,11 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
         var simpleExoPlayer: SimpleExoPlayer? = null
         var mMediaUrl: String? = null
 
-        fun bind(articleItem: ArticleListModel.ArticleItem) {
+        fun bind(articleItem: ArticleListModel.ArticleItem, playerHashMap: HashMap<Int, SimpleExoPlayer>) {
             itemView.title.text = articleItem.title
             itemView.label.text = articleItem.label
             itemView.viewCount.text = articleItem.social.viewCount
+            itemView.position.text = "${adapterPosition}"
 
             for (media in articleItem.mediaGroup) {
                 if ("image" == media.type) {
@@ -117,8 +135,41 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
                 itemView.play_icon.visibility = View.VISIBLE
 
                 simpleExoPlayer = createSimpleExoPlayer(itemView.context)
-
+                playerHashMap.put(adapterPosition, simpleExoPlayer!!)
                 itemView.playerView.player = simpleExoPlayer
+                simpleExoPlayer?.prepare(createMediaSource(mediaUrl!!, itemView.context))
+//                simpleExoPlayer?.addListener(object : Player.EventListener{
+//                    override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters?) {
+//                    }
+//
+//                    override fun onSeekProcessed() {
+//                    }
+//
+//                    override fun onTracksChanged(trackGroups: TrackGroupArray?, trackSelections: TrackSelectionArray?) {
+//                    }
+//
+//                    override fun onPlayerError(error: ExoPlaybackException?) {
+//                    }
+//
+//                    override fun onLoadingChanged(isLoading: Boolean) {
+//                    }
+//
+//                    override fun onPositionDiscontinuity(reason: Int) {
+//                    }
+//
+//                    override fun onRepeatModeChanged(repeatMode: Int) {
+//                    }
+//
+//                    override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
+//                    }
+//
+//                    override fun onTimelineChanged(timeline: Timeline?, manifest: Any?, reason: Int) {
+//                    }
+//
+//                    override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+//                    }
+//
+//                })
 
 
             }

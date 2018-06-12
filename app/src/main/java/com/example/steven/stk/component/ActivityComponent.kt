@@ -1,5 +1,6 @@
 package com.example.steven.stk.component
 
+import com.example.steven.stk.activity.ArticleDetailActivity
 import com.example.steven.stk.activity.MainActivity
 import com.example.steven.stk.annotation.ActivityScope
 import com.example.steven.stk.module.ActivityModule
@@ -17,4 +18,5 @@ import dagger.Subcomponent
 interface ActivityComponent {
     fun plusFragmentComponent(fragmentModule: FragmentModule): FragmentComponent
     fun inject(mainActivity: MainActivity)
+    fun inject(articleDetailActivity: ArticleDetailActivity)
 }

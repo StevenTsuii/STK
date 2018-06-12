@@ -1,5 +1,6 @@
 package com.example.steven.stk.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import com.example.steven.stk.R
@@ -56,6 +57,8 @@ class MainActivity : BaseActivity() {
             R.id.navigation_settings -> {
                 message.setText(R.string.title_notifications)
                 replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
+                val intent = Intent(this, ArticleDetailActivity::class.java)
+                startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
         }

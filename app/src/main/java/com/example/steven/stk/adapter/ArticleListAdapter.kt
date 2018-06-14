@@ -60,24 +60,21 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
         super.onViewAttachedToWindow(holder)
         Log.d("StevenCheck", "onViewAttachedToWindow position:${holder.adapterPosition}")
 
-        if (holder.adapterPosition == 0 || holder.adapterPosition == (itemCount - 1)) {
-            currentMiddlePosition = holder.adapterPosition
+        currentMiddlePosition = if (holder.adapterPosition == 0) {
+            holder.adapterPosition
         } else if (currentMiddlePosition < holder.adapterPosition) {
-            currentMiddlePosition = (holder.adapterPosition - 1)
+            holder.adapterPosition - 1
         } else {
-            currentMiddlePosition = (holder.adapterPosition + 1)
+            holder.adapterPosition + 1
         }
 
         Log.d("StevenCheck", "currentMiddlePosition :${currentMiddlePosition}")
 
-//        holder.simpleExoPlayer.let {
-//            playerHashMap?.put(holder?.adapterPosition, holder.simpleExoPlayer!!)
-//        }
-//
-        if (playerHashMap.containsKey(currentMiddlePosition)) {
-            playerHashMap.forEach { it.value.playWhenReady = false }
-            playerHashMap.get(currentMiddlePosition)?.playWhenReady = true
+
+        playerHashMap?.forEach {
+            it.value.playWhenReady = it.key == currentMiddlePosition
         }
+
         Log.d("StevenCheck", "playerHashMap.size :${playerHashMap.size}")
     }
 
@@ -113,7 +110,9 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
                     GlideApp.with(itemView.context)
                             .load(media.largePath)
                             .centerCrop()
+                            .placeholder(R.drawable.stk_placeholder)
                             .into(itemView.image)
+
                     break
                 }
             }
@@ -138,6 +137,32 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
                 playerHashMap.put(adapterPosition, simpleExoPlayer!!)
                 itemView.playerView.player = simpleExoPlayer
                 simpleExoPlayer?.prepare(createMediaSource(mediaUrl!!, itemView.context))
+
+
+            }
+        }
+
+        fun createSimpleExoPlayer(context: Context): SimpleExoPlayer {
+            val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(DefaultBandwidthMeter())
+            val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
+            return ExoPlayerFactory.newSimpleInstance(context, trackSelector)
+        }
+
+        public fun createMediaSource(videoUrl: String, context: Context): ExtractorMediaSource? {
+            val defaultHttpDataSourceFactory = DefaultHttpDataSourceFactory("Android", DefaultBandwidthMeter(),
+                    DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
+                    DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
+                    true)
+
+            // Produces DataSource instances through which media data is loaded.
+            val dataSourceFactory = DefaultDataSourceFactory(context, DefaultBandwidthMeter(),
+                    defaultHttpDataSourceFactory)
+            // This is the MediaSource representing the media to be played.
+            return ExtractorMediaSource.Factory(dataSourceFactory)
+                    .createMediaSource(Uri.parse(videoUrl))
+
+        }
+    }
 //                simpleExoPlayer?.addListener(object : Player.EventListener{
 //                    override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters?) {
 //                    }
@@ -170,32 +195,5 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
 //                    }
 //
 //                })
-
-
-            }
-        }
-
-        fun createSimpleExoPlayer(context: Context): SimpleExoPlayer {
-            val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(DefaultBandwidthMeter())
-            val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
-            return ExoPlayerFactory.newSimpleInstance(context, trackSelector)
-        }
-
-        public fun createMediaSource(videoUrl: String, context: Context): ExtractorMediaSource? {
-            val defaultHttpDataSourceFactory = DefaultHttpDataSourceFactory("Android", DefaultBandwidthMeter(),
-                    DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
-                    DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
-                    true)
-
-            // Produces DataSource instances through which media data is loaded.
-            val dataSourceFactory = DefaultDataSourceFactory(context, DefaultBandwidthMeter(),
-                    defaultHttpDataSourceFactory)
-            // This is the MediaSource representing the media to be played.
-            return ExtractorMediaSource.Factory(dataSourceFactory)
-                    .createMediaSource(Uri.parse(videoUrl))
-
-        }
-    }
-
 
 }

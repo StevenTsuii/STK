@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.ArticleDetailActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="6bdb2efa44cd54f61760f87a7408dc30a577c3d1" />
-        <activity android:name=".activity.ArticleDetailActivity"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
 
     </application>
 

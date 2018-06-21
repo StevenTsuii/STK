@@ -1,7 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AAAA" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AAAA" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AAAA" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AAAA" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Steven HAHAHAHA"
+            />
+        <!--<android.support.design.widget.CollapsingToolbarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:expandedTitleMarginEnd="64dp"-->
+        <!--app:expandedTitleMarginStart="48dp"-->
+        <!--app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+        <!--app:statusBarScrim="@android:color/transparent">-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/main.backdrop"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@mipmap/ic_launcher_round"-->
+        <!--app:layout_collapseMode="parallax" />-->
+        <!---->
+
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?android:attr/actionBarSize"-->
+        <!--app:layout_collapseMode="pin"  />-->
+
+        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--app:layout_scrollFlags="scroll|enterAlways"-->
+        <!--app:logo="@mipmap/ic_launcher"-->
+        <!--app:subtitleTextColor="@android:color/white"-->
+        <!--app:titleTextColor="@android:color/white"/>-->
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="前面说了一直反复说“当ScrollView发生滚动时”，那么怎么将AppBarLayout与ScrollView关联起来呢？我们注意到，AppBarLayout与ScrollView之间动作“相互依赖”，这不就是我们上一篇《CoordinateLayout的使用如此简单 》所学的内容吗？把ScrollView和AppBarLayout作为CoordinateLayout的子View，然后编写一个Behavior，在这个Behavior里面判断当前的操作是应该让ScrollView时刻保持在AppBarLayout之下（即只要改变AppBarLayout的位置就可以一起滑动），还是应该让ScrollView内部滚动而不让AppBarLayout位置发生变化等等这些需求，都是可以在Behavior里面处理的。你可以去针对你的ScrollView编写Behavior。然而，我们看到我们的AppBarLayout事先的功能比较复杂，如果我们自己去定义这样的效果，代码非常复杂，还要考虑很多方面，好在Android帮我们写好啦，我们直接用就是了，这个ScrollView就是NestedScrollView，请注意，它并没有继承ScrollView，它继承的是FrameLayout，但是它实现的效果把它可以看成是ScrollView。
+
+把NestedScrollView放入到我们的layout文件里面就可以啦~~~，很方便~\n\n\n\n前面说了一直反复说“当ScrollView发生滚动时”，那么怎么将AppBarLayout与ScrollView关联起来呢？我们注意到，AppBarLayout与ScrollView之间动作“相互依赖”，这不就是我们上一篇《CoordinateLayout的使用如此简单 》所学的内容吗？把ScrollView和AppBarLayout作为CoordinateLayout的子View，然后编写一个Behavior，在这个Behavior里面判断当前的操作是应该让ScrollView时刻保持在AppBarLayout之下（即只要改变AppBarLayout的位置就可以一起滑动），还是应该让ScrollView内部滚动而不让AppBarLayout位置发生变化等等这些需求，都是可以在Behavior里面处理的。你可以去针对你的ScrollView编写Behavior。然而，我们看到我们的AppBarLayout事先的功能比较复杂，如果我们自己去定义这样的效果，代码非常复杂，还要考虑很多方面，好在Android帮我们写好啦，我们直接用就是了，这个ScrollView就是NestedScrollView，请注意，它并没有继承ScrollView，它继承的是FrameLayout，但是它实现的效果把它可以看成是ScrollView。
+
+把NestedScrollView放入到我们的layout文件里面就可以啦~~~，很方便~\n\n\n\n前面说了一直反复说“当ScrollView发生滚动时”，那么怎么将AppBarLayout与ScrollView关联起来呢？我们注意到，AppBarLayout与ScrollView之间动作“相互依赖”，这不就是我们上一篇《CoordinateLayout的使用如此简单 》所学的内容吗？把ScrollView和AppBarLayout作为CoordinateLayout的子View，然后编写一个Behavior，在这个Behavior里面判断当前的操作是应该让ScrollView时刻保持在AppBarLayout之下（即只要改变AppBarLayout的位置就可以一起滑动），还是应该让ScrollView内部滚动而不让AppBarLayout位置发生变化等等这些需求，都是可以在Behavior里面处理的。你可以去针对你的ScrollView编写Behavior。然而，我们看到我们的AppBarLayout事先的功能比较复杂，如果我们自己去定义这样的效果，代码非常复杂，还要考虑很多方面，好在Android帮我们写好啦，我们直接用就是了，这个ScrollView就是NestedScrollView，请注意，它并没有继承ScrollView，它继承的是FrameLayout，但是它实现的效果把它可以看成是ScrollView。
+
+把NestedScrollView放入到我们的layout文件里面就可以啦~~~，很方便~" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="floaing!!!!"
+        android:layout_gravity="bottom"
+        app:layout_behavior="com.example.steven.stk.custom.MyButtonBehavior"/>
 </android.support.design.widget.CoordinatorLayout>

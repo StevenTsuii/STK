@@ -18,8 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="wrap_content"
@@ -45,8 +44,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Steven HAHAHAHA"
-            />
+            android:text="Steven HAHAHAHA" />
         <!--<android.support.design.widget.CollapsingToolbarLayout-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -104,10 +102,18 @@
     </android.support.v4.widget.NestedScrollView>
 
 
+    <com.example.steven.stk.custom.FlyMeButton
+        android:id="@+id/buttonB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:text="Fly me"
+        app:layout_behavior="com.example.steven.stk.custom.MyButtonBehavior" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="floaing!!!!"
         android:layout_gravity="bottom"
-        app:layout_behavior="com.example.steven.stk.custom.MyButtonBehavior"/>
+        android:text="floaing!!!!"
+        app:layout_behavior="com.example.steven.stk.custom.MyButtonBehavior" />
 </android.support.design.widget.CoordinatorLayout>

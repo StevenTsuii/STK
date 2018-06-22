@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.activity_article_detail.*
  */
 class ArticleDetailActivity: BaseActivity(){
 
+    var isFly = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,5 +25,14 @@ class ArticleDetailActivity: BaseActivity(){
         toolbar.title = "STK"
         toolbar.subtitle = "Testing Dagger2 with Kotlin"
 //        setSupportActionBar(toolbar)
+
+        buttonB.setOnClickListener {
+
+            it.animate().y(if(isFly)400f else 1200f )
+            isFly = !isFly
+
+        }
     }
+
+
 }

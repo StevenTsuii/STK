@@ -67,11 +67,11 @@ class ArticleListContainerFragment : BaseFragment() {
         plugFragmentComponent().inject(this)
         refreshButton.setText("Refresh")
         refreshButton.setOnClickListener {
-            if (rewardedVideoAd.isLoaded) {
-                rewardedVideoAd.show()
-            }else{
-                loadRewardedVideoAd()
-            }
+//            if (rewardedVideoAd.isLoaded) {
+//                rewardedVideoAd.show()
+//            }else{
+//                loadRewardedVideoAd()
+//            }
         }
 
         initInterstitialAd()

@@ -33,10 +33,12 @@ fun Activity.plugActivityComponent(): ActivityComponent {
 
 fun Context.toast(text: String) = {
     Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    Log.d("toastmsg", "msg: ${text}")
 }
 
 fun Fragment.toast(text: String) = {
     Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+    Log.d("toastmsg", "msg: ${text}")
 }
 
 @SuppressLint("RestrictedApi")

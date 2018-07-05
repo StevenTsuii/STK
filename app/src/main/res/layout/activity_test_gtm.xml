@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <android.support.v4.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/bottomBarButtonTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bottomBarButton Tag" />
+
+    <Button
+        android:id="@+id/bottomBarButtonTag2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bottomBarButton Tag 2" />
+
+    <Button
+        android:id="@+id/bottomBarButtonTag3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="bottomBarButton Tag 3" />
+
+    <Button
+        android:id="@+id/screenViewTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="screenView Tag"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/screenViewTag2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="screenView Tag 2"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/screenViewTag3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="screenView Tag 3"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/navigationButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="navigationButton home"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/navigationButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="navigationButton dashboard"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/navigationButton3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="navigationButton setting"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/readArticleTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Read Article Tag"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/readArticleTag2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Read Article Tag 2"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/readArticleTag3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Read Article Tag 3"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/normalEventTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Normal Event Tag"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/normalEventTag2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Normal Event Tag 2"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/normalEventTag3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Normal Event Tag 3"
+        android:layout_marginTop="10dp"/>
+
+
+
+</LinearLayout>
+
+
+   </android.support.v4.widget.NestedScrollView>
+</android.support.constraint.ConstraintLayout>

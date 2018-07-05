@@ -14,19 +14,58 @@ class GoogleTagManagerHelper {
             pushEvent(context, "pageViewEvent", "pageViewName", screenName)
         }
 
-        fun pushAnyActionCanTriggerEvent(context:Context, value: String){
-//            ContainerHolderSingleton.containerHolder?.refresh()
-            val dataLayer = TagManager.getInstance(context).dataLayer
-           // dataLayer.push(DataLayer.mapOf("event", "anyActionCanTrigger", "Action", "anyActionCanTrigger"))
-            dataLayer.push(DataLayer.mapOf("event", "pageViewEvent", "pageViewName", "pageViewEvent"))
+        fun pushBottomBarButtonTag(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickBottomBarButton"))
+        }
 
-           // dataLayer.push(DataLayer.mapOf("event", "anyActionCanTrigger", "Action", "anyActionCanTrigger"))//, "Category", "CategoryName", "Label", "LabelName", "Value", "value123"))
-//            dataLayer.push(DataLayer.mapOf("event", "anyActionCanTrigger", "Action", "anyActionCanTrigger", "Category", "CategoryName", "Label", "LabelName", "Value", "value123"))
-//            dataLayer.pushEvent("anyActionCanTrigger", DataLayer.mapOf("Action", "anyActionCanTrigger", "Category", "CategoryName", "Label", "LabelName", "Value", "value123"))
-//            dataLayer.push(DataLayer.mapOf("event", "anyActionCanTrigger", "Action", "anyActionCanTrigger", "Category", "Category", "Label", "Label", "Value", "Value"))
-//            dataLayer.push(DataLayer.mapOf("event", "anyActionCanTrigger", "Action", "anyActionCanTrigger", "Category", "anyActionCanTrigger", "Label", "anyActionCanTrigger", "Value", "anyActionCanTrigger"))
+        fun pushBottomBarButtonTag2(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickBottomBarButton", "AAA", "123", "Name", "hahaha"))
+        }
 
-//            pushEvent(context, "pushEvent", "anyActionCanTrigger", "Action", v)
+        fun pushBottomBarButtonTag3(context: Context) {
+            TagManager.getInstance(context).dataLayer.pushEvent("clickBottomBarButton", DataLayer.mapOf("AAA", "123", "Name", "hahaha"))
+        }
+
+        fun pushScreenViewTag(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "screenViewEvent"))
+        }
+
+        fun pushScreenViewTag2(context: Context) {
+            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "ScreenTag2"))
+        }
+
+        fun pushScreenViewTag3(context: Context) {
+            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "ScreenTag3"))
+        }
+
+
+
+        fun pushNavigationButtonTag(context: Context, buttonName: String) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickNavigationButtonEvent", "navigationButtonName", buttonName))
+//            TagManager.getInstance(context).dataLayer.pushEvent("clickNavigationButtonEvent", DataLayer.mapOf(
+////                    "Category", "NavigationButton",
+////                    "Action", "Click",
+////                    "Label", "bottom button",
+//                    "navigationButtonName", buttonName))
+        }
+
+
+        fun pushReadArticleTag(context: Context, articleName: String) {
+            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf("articleName", articleName))
+        }
+
+        fun pushReadArticleTag2(context: Context, articleName: String) {
+            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf("articleName", articleName))
+        }
+
+        fun pushReadArticleTag3(context: Context, articleName: String) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "readArticleEvent", "articleName", articleName))
+        }
+
+        fun pushNormalEventTag(context: Context, category: String, action: String, label: String, value:String){
+            TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalLabel", "haha label22", "NormalValue", "haha value11"))
+//            TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalValue", "haha value11"))
+//            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "normalEvent", "NormalLabel", label, "NormalValue", value))
         }
 
         fun pushEvent(context: Context, eventValue: String, key: String, value: String) {

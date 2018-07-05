@@ -8,7 +8,6 @@ import com.example.steven.stk.base.activity.BaseActivity
 import com.example.steven.stk.extension.*
 import com.example.steven.stk.fragment.ArticleListContainerFragment
 import com.example.steven.stk.gtm.ContainerLoadedCallback
-import com.example.steven.stk.gtm.GoogleTagManagerHelper
 import com.example.steven.stk.repo.AppRepository
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.tagmanager.ContainerHolder
@@ -40,37 +39,29 @@ class MainActivity : BaseActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-//                GoogleTagManagerHelper.pushPageViewEvent(this, "HOME_PAGE")
-                GoogleTagManagerHelper.pushAnyActionCanTriggerEvent(this, "HOME_PAGE")
                 message.setText(R.string.title_home)
                 replaceFragment(articleListContainerFragment, R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
 
-//                GoogleTagManagerHelper.pushPageViewEvent(this, "DASHBOARD")
-                GoogleTagManagerHelper.pushAnyActionCanTriggerEvent(this, "DASHBOARD_PAGE")
 //                message.setText(R.string.title_dashboard)
 //                replaceFragment(SecondFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-//                GoogleTagManagerHelper.pushPageViewEvent(this, "NOTIFICATION_PAGE")
-                GoogleTagManagerHelper.pushAnyActionCanTriggerEvent(this, "NOTIFICATION_PAGE")
  //               ContainerHolderSingleton.containerHolder?.refresh()
 //                message.setText(R.string.title_notifications)
 //                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_steven -> {
-//                GoogleTagManagerHelper.pushPageViewEvent(this, "STEVEN_PAGE")
-                GoogleTagManagerHelper.pushAnyActionCanTriggerEvent(this, "STEVEN_PAGE")
 //                message.setText("???")
 //                replaceFragment(SecondFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
-                GoogleTagManagerHelper.pushPageViewEvent(this, "SETTING_PAGE")
+//                GoogleTagManagerHelper.pushPageViewEvent(this, "SETTING_PAGE")
                 message.setText(R.string.title_notifications)
                 replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 val intent = Intent(this, ArticleDetailActivity::class.java)
@@ -109,7 +100,7 @@ class MainActivity : BaseActivity() {
         tagManager.setVerboseLoggingEnabled(true)
 
         val pending = tagManager.loadContainerPreferNonDefault("GTM-PLFQ5FV",
-                R.raw.gtm_v4_container_binary)
+                R.raw.gtm_v4_container_binary27)
 
         pending.setResultCallback(object : ResultCallback<ContainerHolder> {
             override fun onResult(containerHolder: ContainerHolder) {

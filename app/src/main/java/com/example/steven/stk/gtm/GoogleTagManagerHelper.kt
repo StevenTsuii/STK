@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.android.gms.tagmanager.DataLayer
 import com.google.android.gms.tagmanager.TagManager
+import com.google.android.tagmanager.examples.cuteanimals.ContainerHolderSingleton
 
 /**
  * Created by steven on 28/6/2018.
@@ -66,6 +67,10 @@ class GoogleTagManagerHelper {
             TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalLabel", "haha label22", "NormalValue", "haha value11"))
 //            TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalValue", "haha value11"))
 //            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "normalEvent", "NormalLabel", label, "NormalValue", value))
+        }
+
+        fun refreshContainer(){
+            ContainerHolderSingleton.containerHolder?.refresh()
         }
 
         fun pushEvent(context: Context, eventValue: String, key: String, value: String) {

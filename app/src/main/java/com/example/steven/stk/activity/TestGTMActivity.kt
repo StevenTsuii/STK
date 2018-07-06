@@ -84,6 +84,8 @@ class TestGTMActivity : BaseActivity() {
         normalEventTag3.setOnClickListener {
             GoogleTagManagerHelper.pushNormalEventTag(this, "categoryC", action = "actionC", label = "labelC", value = "valueC")
         }
+
+        refreshContainer.setOnClickListener { GoogleTagManagerHelper.refreshContainer() }
     }
 
     private fun loadGTMContainer() {
@@ -91,7 +93,7 @@ class TestGTMActivity : BaseActivity() {
         tagManager.setVerboseLoggingEnabled(true)
 
         val pending = tagManager.loadContainerPreferNonDefault("GTM-PLFQ5FV",
-                R.raw.gtm_v4_container_binary27)
+                R.raw.gtm_v4_container_binary31)
 
         pending.setResultCallback(object : ResultCallback<ContainerHolder> {
             override fun onResult(containerHolder: ContainerHolder) {

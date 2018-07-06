@@ -36,7 +36,7 @@ class GoogleTagManagerHelper {
         }
 
         fun pushScreenViewTag3(context: Context) {
-            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "ScreenTag3"))
+            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "ScreenTag3", "articleName", "HAHA"))
         }
 
 
@@ -67,6 +67,24 @@ class GoogleTagManagerHelper {
             TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalLabel", "haha label22", "NormalValue", "haha value11"))
 //            TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalValue", "haha value11"))
 //            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "normalEvent", "NormalLabel", label, "NormalValue", value))
+        }
+
+
+        fun pushMultiDataOne(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "multiDataEvent", "DataLabel", "ddlabel"))
+        }
+
+        fun pushMultiDataTwo(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "multiDataEvent", "DataLabel", "ddlabel2", "ScreenName", "MultiDataScreen"))
+        }
+
+
+        fun pushFreeUser(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "freeUserEvent"))
+        }
+
+        fun pushPaidUser(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "paidUserEvent"))
         }
 
         fun refreshContainer(){

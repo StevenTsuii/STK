@@ -85,6 +85,14 @@ class TestGTMActivity : BaseActivity() {
             GoogleTagManagerHelper.pushNormalEventTag(this, "categoryC", action = "actionC", label = "labelC", value = "valueC")
         }
 
+        multiDataTag.setOnClickListener { GoogleTagManagerHelper.pushMultiDataOne(this) }
+
+        multiDataTag2.setOnClickListener { GoogleTagManagerHelper.pushMultiDataTwo(this) }
+
+        freeUserTag.setOnClickListener {  GoogleTagManagerHelper.pushFreeUser(this) }
+
+        paidUserTag.setOnClickListener { GoogleTagManagerHelper.pushPaidUser(this) }
+
         refreshContainer.setOnClickListener { GoogleTagManagerHelper.refreshContainer() }
     }
 

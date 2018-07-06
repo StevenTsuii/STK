@@ -114,6 +114,35 @@
 
 
     <Button
+        android:id="@+id/multiDataTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MultiData Tag(One value)"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/multiDataTag2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MultiData Tag(two value)"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/freeUserTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Free User Tag"
+        android:layout_marginTop="10dp"/>
+
+
+    <Button
+        android:id="@+id/paidUserTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paid User Tag"
+        android:layout_marginTop="10dp"/>
+
+    <Button
         android:id="@+id/refreshContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -16,15 +16,15 @@ class GoogleTagManagerHelper {
         }
 
         fun pushBottomBarButtonTag(context: Context) {
-            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickBottomBarButton"))
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickBottomBarButton", "Action", "GoodAction", "Category", "GoodCategory", "Label", "GoodLabel", "Value", 20))
         }
 
         fun pushBottomBarButtonTag2(context: Context) {
-            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickBottomBarButton", "AAA", "123", "Name", "hahaha"))
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickBottomBarButton", "Action", "StevenAction", "Category", "StevenCategory", "Label", "StevenLabel", "Value", "40"))
         }
 
         fun pushBottomBarButtonTag3(context: Context) {
-            TagManager.getInstance(context).dataLayer.pushEvent("clickBottomBarButton", DataLayer.mapOf("AAA", "123", "Name", "hahaha"))
+            TagManager.getInstance(context).dataLayer.pushEvent("clickBottomBarButton", DataLayer.mapOf("NormalLabel", "NormalLabel111", "NormalValue", "NormalLabel222"))
         }
 
         fun pushScreenViewTag(context: Context) {
@@ -52,11 +52,11 @@ class GoogleTagManagerHelper {
 
 
         fun pushReadArticleTag(context: Context, articleName: String) {
-            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf("articleName", articleName, "cm_articleId", "article_000", "cm_active", "true", "ScreenName", null))
+            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf("articleName", articleName, "cm_articleId", "article_000", "cm_active", "true", "ScreenName", null, "articlePosition", "0"))
         }
 
         fun pushReadArticleTag2(context: Context, articleName: String) {
-            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf( "ScreenName", "ArticleDetailScreen02", "articleName", articleName, "cm_userType", "Premium","cm_articleId", "article_001", "cm_brand", "NewBrand", "cm_date", "2018-07-11"))
+            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf( "ScreenName", "ArticleDetailScreen02", "articleName", articleName, "cm_userType", "Premium","cm_articleId", "article_001", "cm_brand", "NewBrand", "cm_date", "2018-07-11", "articlePosition", "1"))
         }
 
         fun pushReadArticleTag3(context: Context, articleName: String) {

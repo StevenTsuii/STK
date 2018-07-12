@@ -32,11 +32,11 @@ class GoogleTagManagerHelper {
         }
 
         fun pushScreenViewTag2(context: Context) {
-            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "ScreenTag2", "cm_weather", "raining", "cm_traffic", "bad"))
+            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "RainingScreen", "cm_weather", "raining", "cm_traffic", "bad"))
         }
 
         fun pushScreenViewTag3(context: Context) {
-            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "ScreenTag3", "cm_weather", "cloudy"))
+            TagManager.getInstance(context).dataLayer.pushEvent("screenViewEvent", DataLayer.mapOf("ScreenName", "CloudyScreen", "cm_weather", "cloudy"))
         }
 
 

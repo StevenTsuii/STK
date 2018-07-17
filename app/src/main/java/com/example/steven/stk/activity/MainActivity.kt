@@ -10,6 +10,7 @@ import com.example.steven.stk.extension.plugActivityComponent
 import com.example.steven.stk.extension.replaceFragment
 import com.example.steven.stk.extension.toast
 import com.example.steven.stk.fragment.ArticleListContainerFragment
+import com.example.steven.stk.fragment.SecondFragment
 import com.example.steven.stk.repo.AppRepository
 import com.google.android.gms.tagmanager.TagManager
 import io.reactivex.Observable
@@ -37,30 +38,23 @@ class MainActivity : BaseActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                message.setText(R.string.title_home)
                 replaceFragment(articleListContainerFragment, R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
 
-//                message.setText(R.string.title_dashboard)
-//                replaceFragment(SecondFragment(), R.id.fragmentContainer)
+                replaceFragment(SecondFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
- //               ContainerHolderSingleton.containerHolder?.refresh()
-//                message.setText(R.string.title_notifications)
-//                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
+                replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_steven -> {
-//                message.setText("???")
-//                replaceFragment(SecondFragment(), R.id.fragmentContainer)
+                replaceFragment(SecondFragment(), R.id.fragmentContainer)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
-//                GoogleTagManagerHelper.pushPageViewEvent(this, "SETTING_PAGE")
-                message.setText(R.string.title_notifications)
                 replaceFragment(ArticleListContainerFragment(), R.id.fragmentContainer)
                 val intent = Intent(this, ArticleDetailActivity::class.java)
                 startActivity(intent)

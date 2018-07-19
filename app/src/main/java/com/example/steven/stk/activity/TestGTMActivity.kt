@@ -30,6 +30,14 @@ class TestGTMActivity : BaseActivity() {
 
         loadGTMContainer()
 
+        easyTag.setOnClickListener { GoogleTagManagerHelper.pushGameMode(this, "Easy") }
+        normalTag.setOnClickListener { GoogleTagManagerHelper.pushGameMode(this, "Normal") }
+        hardTag.setOnClickListener { GoogleTagManagerHelper.pushGameMode(this, "Hard") }
+
+
+        timestampTag.setOnClickListener { GoogleTagManagerHelper.pushTimestamp(this) }
+        timehitTag.setOnClickListener { GoogleTagManagerHelper.pushTimeHit(this) }
+
         bottomBarButtonTag.setOnClickListener {
             GoogleTagManagerHelper.pushBottomBarButtonTag(this)
         }

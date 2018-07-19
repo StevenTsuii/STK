@@ -11,6 +11,20 @@ import com.google.android.tagmanager.examples.cuteanimals.ContainerHolderSinglet
  */
 class GoogleTagManagerHelper {
     companion object {
+
+        fun pushGameMode(context: Context, mode: String) {
+            TagManager.getInstance(context).dataLayer.pushEvent("gamemodeEvent", DataLayer.mapOf("ScreenName", "GameModeScreen", "cm_gamemode", mode))
+        }
+
+        fun pushTimestamp(context: Context) {
+            TagManager.getInstance(context).dataLayer.pushEvent("timestampEvent", DataLayer.mapOf("ScreenName", "TimestampScreen", "cm_timestamp", "" + System.currentTimeMillis()))
+        }
+
+        fun pushTimeHit(context: Context) {
+            TagManager.getInstance(context).dataLayer.pushEvent("timehitEvent", DataLayer.mapOf("ScreenName", "TimeHitScreen", "cm_timehit", "" + System.currentTimeMillis()))
+        }
+
+
         fun pushPageViewEvent(context: Context, screenName: String) {
             pushEvent(context, "pageViewEvent", "pageViewName", screenName)
         }
@@ -40,7 +54,6 @@ class GoogleTagManagerHelper {
         }
 
 
-
         fun pushNavigationButtonTag(context: Context, buttonName: String) {
             TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "clickNavigationButtonEvent", "navigationButtonName", buttonName))
 //            TagManager.getInstance(context).dataLayer.pushEvent("clickNavigationButtonEvent", DataLayer.mapOf(
@@ -56,14 +69,14 @@ class GoogleTagManagerHelper {
         }
 
         fun pushReadArticleTag2(context: Context, articleName: String) {
-            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf( "ScreenName", "ArticleDetailScreen02", "articleName", articleName, "cm_userType", "Premium","cm_articleId", "article_001", "cm_brand", "NewBrand", "cm_date", "2018-07-11", "articlePosition", "1"))
+            TagManager.getInstance(context).dataLayer.pushEvent("readArticleEvent", DataLayer.mapOf("ScreenName", "ArticleDetailScreen02", "articleName", articleName, "cm_userType", "Premium", "cm_articleId", "article_001", "cm_brand", "NewBrand", "cm_date", "2018-07-11", "articlePosition", "1"))
         }
 
         fun pushReadArticleTag3(context: Context, articleName: String) {
-            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "readArticleEvent", "articleName", articleName,  "cm_articleId", "article_002", "cm_userType", "Guest", "ScreenName", "ArticleDetailScreen03"))
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "readArticleEvent", "articleName", articleName, "cm_articleId", "article_002", "cm_userType", "Guest", "ScreenName", "ArticleDetailScreen03"))
         }
 
-        fun pushNormalEventTag(context: Context, category: String, action: String, label: String, value:String){
+        fun pushNormalEventTag(context: Context, category: String, action: String, label: String, value: String) {
             TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalLabel", "haha label22", "NormalValue", "haha value11"))
 //            TagManager.getInstance(context).dataLayer.pushEvent("normalEvent", DataLayer.mapOf("NormalValue", "haha value11"))
 //            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "normalEvent", "NormalLabel", label, "NormalValue", value))
@@ -87,7 +100,7 @@ class GoogleTagManagerHelper {
             TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "paidUserEvent"))
         }
 
-        fun refreshContainer(){
+        fun refreshContainer() {
             ContainerHolderSingleton.containerHolder?.refresh()
         }
 

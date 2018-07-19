@@ -12,11 +12,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/easyTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Easy" />
+        <Button
+            android:id="@+id/normalTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal" />
+        <Button
+            android:id="@+id/hardTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hard" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/timestampTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Timestamp Tag" />
+
+    <Button
+        android:id="@+id/timehitTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Timehit Tag 2" />
+
     <Button
         android:id="@+id/bottomBarButtonTag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="bottomBarButton Tag" />
+        android:text="bottomBarButton Tag"
+        android:layout_marginTop="50dp"/>
 
     <Button
         android:id="@+id/bottomBarButtonTag2"

@@ -84,6 +84,7 @@ class GoogleTagManagerHelper {
 
 
         fun pushMultiDataOne(context: Context) {
+            TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("ScreenName", null))
             TagManager.getInstance(context).dataLayer.push(DataLayer.mapOf("event", "multiDataEvent", "DataLabel", "ddlabel"))
         }
 

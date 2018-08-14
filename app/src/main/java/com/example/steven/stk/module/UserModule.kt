@@ -3,6 +3,7 @@ package com.example.steven.stk.module
 import com.example.steven.stk.GUEST
 import com.example.steven.stk.GUEST_NAME
 import com.example.steven.stk.USER_NAME
+import com.example.steven.stk.data.FakeData2
 import com.example.steven.stk.data.User
 import dagger.Module
 import dagger.Provides
@@ -12,7 +13,7 @@ import javax.inject.Named
  * Created by steven on 26/3/2018.
  */
 @Module
-open class UserModule {
+class UserModule {
 
 
     @Provides
@@ -32,6 +33,10 @@ open class UserModule {
     @Provides
     @Named(GUEST_NAME)
     open fun providesGuestName() = "Guest ABC"
+
+
+    @Provides
+    fun providesFakeData2() = FakeData2()
 
 
 }

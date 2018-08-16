@@ -142,6 +142,11 @@
                 android:layout_height="wrap_content"
                 android:text="@{cellViewModel.getButtonText()}" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_free_sample_opt"/>
+
         </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

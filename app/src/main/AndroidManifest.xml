@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.ArticleDetailActivity"
+            android:name=".activity.PlayVectorActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +30,7 @@
             android:value="6bdb2efa44cd54f61760f87a7408dc30a577c3d1" />
         <activity android:name=".activity.TestGTMActivity"></activity>
         <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.ArticleDetailActivity"></activity>
 
 
         <!-- Used for install referrer tracking-->

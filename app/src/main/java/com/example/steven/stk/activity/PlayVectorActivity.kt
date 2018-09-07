@@ -10,9 +10,13 @@ import com.example.steven.stk.AppLevelConfig
 import com.example.steven.stk.BuildConfig
 import com.example.steven.stk.R
 import com.example.steven.stk.base.activity.BaseActivity
+import com.example.steven.stk.extension.log
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_play_vector.*
-
-
+import java.util.concurrent.TimeUnit
 
 
 class PlayVectorActivity : BaseActivity() {
@@ -34,10 +38,25 @@ class PlayVectorActivity : BaseActivity() {
 
         text2.text = "applicationId:\n ${BuildConfig.APPLICATION_ID}" +
                 "\n\nFlavor:\n ${BuildConfig.FLAVOR}" +
-                "\n\nEnvironment: ${AppEnvironmentConfig.environment}"+
+                "\n\nEnvironment: ${AppEnvironmentConfig.environment}" +
                 "\nLevel:${AppLevelConfig.level}"
 
 
+        Observable.create(ObservableOnSubscribe<String> { emitter ->
+            var count = 0
+            imageView.setOnClickListener {
+                emitter.onNext("hello${count++}")
+            }
+        })
+//                .debounce(2, TimeUnit.SECONDS)
+                .buffer(400, TimeUnit.MILLISECONDS)
+                .filter { it.size >= 2 }
+                .map { "success" }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    log("consumer: ${it}")
+                }
 
 
     }

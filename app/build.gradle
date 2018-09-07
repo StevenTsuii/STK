@@ -72,6 +72,18 @@ android {
 //
 
     }
+
+    variantFilter { variant ->
+        def flavor = variant.flavors.name
+        def buildTypeName = variant.buildType.name
+
+        if ((flavor.contains("member") && flavor.contains("prod"))
+                ||(flavor.contains("member") && flavor.contains("uat"))
+                ||(flavor.contains("guest") && flavor.contains("prod"))
+                || buildTypeName.contains("release")) {
+            variant.ignore = true
+        }
+    }
 }
 
 def getDate() {

@@ -8,7 +8,7 @@ import com.example.steven.stk.fragment.ArticleListFragment
 /**
  * Created by steven on 23/5/2018.
  */
-class MainPagerAdapter(fragmentManager : FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
+class MainPagerAdapter(fragmentManager : FragmentManager?) : FragmentStatePagerAdapter(fragmentManager) {
 
     val sections = arrayOf("AA")
 

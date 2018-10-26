@@ -1,10 +1,7 @@
 package com.example.steven.stk.component
 
 import com.example.steven.stk.annotation.FragmentScope
-import com.example.steven.stk.fragment.ArticleListContainerFragment
-import com.example.steven.stk.fragment.ArticleListFragment
-import com.example.steven.stk.fragment.MainFragment
-import com.example.steven.stk.fragment.SecondFragment
+import com.example.steven.stk.fragment.*
 import com.example.steven.stk.module.FragmentModule
 import dagger.Subcomponent
 
@@ -18,4 +15,5 @@ interface FragmentComponent {
     fun inject(articleListFragment: ArticleListFragment)
     fun inject(fragmentArticleListContainerFragment: ArticleListContainerFragment)
     fun inject(secondFragment: SecondFragment)
+    fun inject(myCloudFragment: MyCloudFragment)
 }

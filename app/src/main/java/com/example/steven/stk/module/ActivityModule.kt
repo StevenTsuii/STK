@@ -4,6 +4,8 @@ import android.content.Context
 import com.example.steven.stk.annotation.ActivityScope
 import com.example.steven.stk.data.FakeData2
 import com.example.steven.stk.repo.AppRepository
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -28,5 +30,14 @@ class ActivityModule {
     @ActivityScope
     fun providesFakeData2() = FakeData2()
 
-
+    @Provides
+    @ActivityScope
+    fun providesFirebaseFirestore(): FirebaseFirestore {
+        var firestore = FirebaseFirestore.getInstance()
+        val settings = FirebaseFirestoreSettings.Builder()
+                .setTimestampsInSnapshotsEnabled(true)
+                .build()
+        firestore.firestoreSettings = settings
+        return firestore
+    }
 }

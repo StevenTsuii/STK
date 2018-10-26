@@ -2,6 +2,7 @@ package com.example.steven.stk.component
 
 import com.example.steven.stk.activity.ArticleDetailActivity
 import com.example.steven.stk.activity.MainActivity
+import com.example.steven.stk.activity.MyCloudActivity
 import com.example.steven.stk.activity.TestGTMActivity
 import com.example.steven.stk.annotation.ActivityScope
 import com.example.steven.stk.module.*
@@ -18,4 +19,5 @@ interface ActivityComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(articleDetailActivity: ArticleDetailActivity)
     fun inject(testGTMActivity: TestGTMActivity)
+    fun inject(myCloudActivity: MyCloudActivity)
 }

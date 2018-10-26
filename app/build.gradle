@@ -130,11 +130,14 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
 
+
     //AdMob
     implementation 'com.google.firebase:firebase-ads:15.0.0'
 
     //FireBase
     implementation 'com.google.firebase:firebase-core:16.0.0'
+    //Firestore
+    implementation 'com.google.firebase:firebase-firestore:16.0.0'
 
     //ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.7.0'

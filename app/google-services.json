@@ -17,10 +17,6 @@
         {
           "client_id": "608976078017-caotjvnevi8ftolfdu98h4c2i7v0pdd1.apps.googleusercontent.com",
           "client_type": 3
-        },
-        {
-          "client_id": "608976078017-caotjvnevi8ftolfdu98h4c2i7v0pdd1.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -39,7 +35,8 @@
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-4344418392776540~1892147936"
     }
   ],
   "configuration_version": "1"

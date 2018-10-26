@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/add_record_a_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Record-A 1" />
+
+        <Button
+            android:id="@+id/add_record_a_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Add Record-A 2" />
+
+        <Button
+            android:id="@+id/read_record_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Read Record-A" />
+
+        <Button
+            android:id="@+id/add_record_b_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Add Record-B 1" />
+
+        <Button
+            android:id="@+id/add_record_b_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Add Record-B 2" />
+
+        <Button
+            android:id="@+id/read_record_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Read Record-B" />
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

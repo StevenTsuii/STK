@@ -37,6 +37,7 @@ class ActivityModule {
         val settings = FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
                 .build()
+        FirebaseFirestore.setLoggingEnabled(true)
         firestore.firestoreSettings = settings
         return firestore
     }

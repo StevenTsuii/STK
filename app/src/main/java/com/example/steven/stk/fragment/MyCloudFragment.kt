@@ -48,6 +48,7 @@ class MyCloudFragment : BaseFragment() {
             hashMap["Name"] = "Steven"
             hashMap["Timestamp"] = System.currentTimeMillis()
 
+            Log.d(TAG, "add Record1......")
             firestore
                     .collection(collectionName)
                     .add(hashMap)
@@ -61,9 +62,9 @@ class MyCloudFragment : BaseFragment() {
     fun addRecord2(collectionName: String) {
         var hashMap = HashMap<String, Any>()
         hashMap.let { hashMap ->
-            hashMap["Name"] = "Carol"
+            hashMap["Name"] = "CCCCC"
             hashMap["Timestamp"] = System.currentTimeMillis()
-
+            Log.d(TAG, "add Record2......")
             firestore
                     .collection(collectionName)
                     .add(hashMap)
@@ -76,13 +77,14 @@ class MyCloudFragment : BaseFragment() {
 
 
     fun readRecord(collectionName: String) {
+        Log.d(TAG, "read Record")
         firestore.collection(collectionName)
                 .get()
                 .addOnCompleteListener {
                     Log.d(TAG, "Get Complete ")
-                    for (document in it.getResult()) {
-                        Log.d(TAG, "Complete " + document.getId() + " => " + document.getData())
-                    }
+//                    for (document in it.getResult()) {
+//                        Log.d(TAG, "Complete " + document.getId() + " => " + document.getData())
+//                    }
                 }
                 .addOnCanceledListener { Log.d(TAG, "Get Canceled ") }
                 .addOnSuccessListener { Log.d(TAG, "Get Success Size: ${it.size()}  DOCUMENTS: ${it.documents}") }

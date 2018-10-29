@@ -93,21 +93,42 @@ def getDate() {
 ext.retrofitVersion = '2.4.0'
 ext.okhttp3Version = '3.10.0'
 ext.dagger2Version = '2.15'
-ext.androidSupportVersion = "26.1.0"
+ext.androidSupportVersion = "27.0.2" //27.1.1 facebook  some libraries conflict
 ext.googlePlayServiceVersion = "15.0.0"
 ext.lifecycleVersion = '1.1.1'
+
+configurations {
+//    all*.exclude group: "com.android.support"
+//    resolutionStrategy {
+//        force 'org.hamcrest:hamcrest-core:1.3'
+//    }
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$androidSupportVersion"
     implementation "com.android.support:design:$androidSupportVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation "com.android.support:support-vector-drawable:$androidSupportVersion"
-    implementation "com.google.android.gms:play-services-ads:$googlePlayServiceVersion"
+    implementation ("com.google.android.gms:play-services-ads:$googlePlayServiceVersion"){
+        //custom tab 26.1.0  , conflict with 27.1.1 support library
+//        exclude group: "com.android.support"
+    }
+
+    //Google Tag Manager
+    implementation 'com.google.android.gms:play-services-analytics:16.0.4'
+
+    //AdMob
+    implementation 'com.google.firebase:firebase-ads:15.0.0'
+
+    //FireBase
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    //Firestore
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
 
     //Glide
-    implementation('com.github.bumptech.glide:glide:4.7.1') {
+    implementation ('com.github.bumptech.glide:glide:4.7.1'){
         exclude group: "com.android.support"
     }
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
@@ -131,14 +152,6 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
 
 
-    //AdMob
-    implementation 'com.google.firebase:firebase-ads:15.0.0'
-
-    //FireBase
-    implementation 'com.google.firebase:firebase-core:16.0.0'
-    //Firestore
-    implementation 'com.google.firebase:firebase-firestore:16.0.0'
-
     //ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
 
@@ -147,14 +160,18 @@ dependencies {
         transitive = true
     }
 
-    //Google Tag Manager
-    implementation 'com.google.android.gms:play-services-analytics:16.0.0'
+
 
     // LiveData & ViewModel
     implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
 
     //Facebook
-    implementation 'com.facebook.android:facebook-login:4.33.0'
+    implementation ('com.facebook.android:facebook-login:4.35.0'){
+        //cardview v7 27.0.2
+//        exclude group: "com.android.support"
+//        exclude group: 'com.android.support', module: 'cardview-v7'
+//        exclude group: 'com.android.support', module: 'customtabs'
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

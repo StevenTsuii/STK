@@ -11,10 +11,9 @@ class MyCloudActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        plugActivityComponent().inject(this)
 
         setContentView(R.layout.activity_my_cloud)
-
-        plugActivityComponent().inject(this)
         addFragment(MyCloudFragment(), R.id.fragment_container)
     }
 }

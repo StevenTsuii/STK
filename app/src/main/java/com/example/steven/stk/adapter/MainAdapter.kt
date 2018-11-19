@@ -32,11 +32,11 @@ class MainAdapter(mContext : Context) : RecyclerView.Adapter<MainAdapter.MainVie
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MainViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_contact, parent, false))
     }
 
-    override fun onBindViewHolder(holder: MainViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
        // holder?.itemView?.rootView?.name?.text = "position: ${position} name:${mItemList!![position].name}"
         holder?.bind(mainData = mItemList[position])
     }

@@ -41,12 +41,12 @@ class ArticleListAdapter(articleItemList: ArrayList<ArticleListModel.ArticleItem
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ArticleListCellItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleListCellItemViewHolder {
         Log.d("StevenCheck", "onCreateViewHolder")
         return ArticleListCellItemViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_article_list_cell, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ArticleListCellItemViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ArticleListCellItemViewHolder, position: Int) {
         Log.d("StevenCheck", "onBindViewHolder position:${position}")
         holder?.bind(articleItem = articleItemList.get(position), playerHashMap = playerHashMap)
     }

@@ -16,4 +16,5 @@ interface FragmentComponent {
     fun inject(fragmentArticleListContainerFragment: ArticleListContainerFragment)
     fun inject(secondFragment: SecondFragment)
     fun inject(myCloudFragment: MyCloudFragment)
+    fun inject(snsFragment: SNSFragment)
 }

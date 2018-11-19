@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.steven.stk.annotation.ActivityScope
 import com.example.steven.stk.data.FakeData2
 import com.example.steven.stk.repo.AppRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import dagger.Module
@@ -40,5 +41,11 @@ class ActivityModule {
         FirebaseFirestore.setLoggingEnabled(true)
         firestore.firestoreSettings = settings
         return firestore
+    }
+
+    @Provides
+    @ActivityScope
+    fun providesFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
     }
 }

@@ -32,7 +32,7 @@
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.ArticleDetailActivity"></activity>
         <activity android:name=".activity.PlayVectorActivity"></activity>
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.SnsActivity"></activity>
 
 
         <!-- Used for install referrer tracking-->

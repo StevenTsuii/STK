@@ -4,12 +4,16 @@ import android.content.Context
 import com.example.steven.stk.annotation.ActivityScope
 import com.example.steven.stk.data.FakeData2
 import com.example.steven.stk.repo.AppRepository
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
+
 
 /**
  * Created by steven on 25/4/2018.
@@ -47,5 +51,16 @@ class ActivityModule {
     @ActivityScope
     fun providesFirebaseAuth(): FirebaseAuth {
         return FirebaseAuth.getInstance()
+    }
+
+    @Provides
+    @ActivityScope
+    fun providesGoogleSignInClient(context: Context): GoogleSignInClient {
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+        return GoogleSignIn.getClient(context, gso);
     }
 }

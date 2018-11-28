@@ -23,10 +23,32 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('keystore/stk_release.keystore')
+            storePassword 'pw1234'
+            keyAlias 'stk_release1'
+            keyPassword 'pw1234'
+        }
+
+        release {
+            storeFile file('keystore/stk_release.keystore')
+            storePassword 'pw1234'
+            keyAlias 'stk_release1'
+            keyPassword 'pw1234'
+        }
+    }
+
     buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     productFlavors {
@@ -78,10 +100,10 @@ android {
         def buildTypeName = variant.buildType.name
 
         if ((flavor.contains("member") && flavor.contains("prod"))
-                ||(flavor.contains("member") && flavor.contains("uat"))
-                ||(flavor.contains("guest") && flavor.contains("prod"))
+                || (flavor.contains("member") && flavor.contains("uat"))
+                || (flavor.contains("guest") && flavor.contains("prod"))
                 || buildTypeName.contains("release")) {
-            variant.ignore = true
+//            variant.ignore = true
         }
     }
 }
@@ -111,10 +133,12 @@ dependencies {
     implementation "com.android.support:design:$androidSupportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation "com.android.support:support-vector-drawable:$androidSupportVersion"
-    implementation ("com.google.android.gms:play-services-ads:$googlePlayServiceVersion"){
+    implementation("com.google.android.gms:play-services-ads:$googlePlayServiceVersion") {
         //custom tab 26.1.0  , conflict with 27.1.1 support library
 //        exclude group: "com.android.support"
     }
+    //For google sign-in
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     //Google Tag Manager
     implementation 'com.google.android.gms:play-services-analytics:16.0.4'
@@ -134,9 +158,8 @@ dependencies {
 //    // FirebaseUI for Firebase Auth
 //    implementation 'com.firebaseui:firebase-ui-auth:4.2.1'
 
-
     //Glide
-    implementation ('com.github.bumptech.glide:glide:4.7.1'){
+    implementation('com.github.bumptech.glide:glide:4.7.1') {
         exclude group: "com.android.support"
     }
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
@@ -159,22 +182,19 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
 
-
     //ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
 
     //Fabric - Crashlytics
-    implementation ('com.crashlytics.sdk.android:crashlytics:2.9.3@aar'){
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') {
         transitive = true
     }
-
-
 
     // LiveData & ViewModel
     implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
 
     //Facebook
-    implementation ('com.facebook.android:facebook-login:4.35.0'){
+    implementation('com.facebook.android:facebook-login:4.35.0') {
         //cardview v7 27.0.2
 //        exclude group: "com.android.support"
 //        exclude group: 'com.android.support', module: 'cardview-v7'
@@ -184,7 +204,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
 
 
 }

@@ -1,31 +1,35 @@
 {
   "project_info": {
-    "project_number": "608976078017",
-    "firebase_url": "https://stkproject-794a4.firebaseio.com",
-    "project_id": "stkproject-794a4",
-    "storage_bucket": "stkproject-794a4.appspot.com"
+    "project_number": "489220570608",
+    "firebase_url": "https://stkguestdev.firebaseio.com",
+    "project_id": "stkguestdev",
+    "storage_bucket": "stkguestdev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:608976078017:android:0d98e634dc89ddf5",
+        "mobilesdk_app_id": "1:489220570608:android:3b857f86c9ddde31",
         "android_client_info": {
           "package_name": "com.example.steven.stk.guest.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "608976078017-caotjvnevi8ftolfdu98h4c2i7v0pdd1.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "489220570608-lgh12pun3u8v575hunujpugf8e0t7kb5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.steven.stk.guest.dev",
+            "certificate_hash": "348b165622a1ee067fc9c35d922cf75b02442fc8"
+          }
         },
         {
-          "client_id": "608976078017-caotjvnevi8ftolfdu98h4c2i7v0pdd1.apps.googleusercontent.com",
+          "client_id": "489220570608-m06m2h1kmprkjorb030mi94pg6622eqf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAY4qRGVQdvsaLOnwb9sSSgv4J_oyg76fo"
+          "current_key": "AIzaSyBhLqCL8wiVfa3zBnXmeUXU1B-8pr2NjWA"
         }
       ],
       "services": {
@@ -33,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489220570608-m06m2h1kmprkjorb030mi94pg6622eqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

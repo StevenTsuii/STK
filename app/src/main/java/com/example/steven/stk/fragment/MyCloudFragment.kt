@@ -109,8 +109,8 @@ class MyCloudFragment : BaseFragment() {
 //            hashMap["Object"] = TestData()
 
             Log.d(TAG, "add Record1......")
-            getDBMemberPath()
-                    .document("${x++}")
+            getDBMemberPath().document()
+//                    .document("${x++}")
                     .set(hashMap)
                     .addOnCompleteListener { Log.d(TAG, "Add Complete ") }
                     .addOnCanceledListener { Log.d(TAG, "Add Canceled ") }

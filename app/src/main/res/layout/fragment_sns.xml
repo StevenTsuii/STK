@@ -56,11 +56,11 @@
             android:layout_height="wrap_content"
             android:text="Get User Profule" />
 
-        <Button
-            android:id="@+id/google_login_button"
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Google login" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/facebook_login_button"
